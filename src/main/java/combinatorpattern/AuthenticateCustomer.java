@@ -1,6 +1,7 @@
 package combinatorpattern;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static combinatorpattern.CustomerCombinatorValidationService.*;
 
@@ -23,9 +24,12 @@ public class AuthenticateCustomer {
                 .and(isPhoneNumberValid())
                 .and(isAdult()).apply(model);
 
-        if (result != ValidationResult.SUCCESSFULLY_VALID){
-            throw new IllegalStateException(result.name());
-        }
+        Optional.ofNullable(result)
+                .ifPresent(value -> {
+                    if(value != ValidationResult.SUCCESSFULLY_VALID){
+                        throw new IllegalStateException(result.name());
+                    }
+                });
 
         System.out.println(result);
     }
