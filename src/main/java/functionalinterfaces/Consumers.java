@@ -25,7 +25,7 @@ public class Consumers {
         }
     }
 
-    static void greetCustomer(Customer customer){
+    static void greetCustomer(Customer customer) {
         System.out.println("Hello " + customer.customerName +
                 " phone number " + customer.phoneNumber +
                 " has been activated");
